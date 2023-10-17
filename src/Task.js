@@ -16,22 +16,26 @@ const Task = ({ task }) => {
     const [editedTask, setEditedTask] = useState(task);
     // const [tName, setTName] = useState(task.taskName);
 
-    const handleToguel = (id) => {
-        Dispatch(togueltodo(id));
-    }
     const handleDelete = (id) => {
         Dispatch(delet(id))
+        console.log("After Delete editedTask: ", editedTask);
+        console.log("After Delete Task: ", task);
     }
 
     const handleEditTask = () => {
         Dispatch(edittodo(editedTask));
+        console.log("After Edit editedTask: ", editedTask);
+        console.log("After Edit Task: ", task);
+    }
+    const handleToguel = (id) => {
+        Dispatch(togueltodo(id));
     }
 
     return (
-        <div className={`paper ${editedTask.checked ? 'blue' : 'pink'}`} key={editedTask.id} >
+        <div className={`paper ${task.checked ? 'blue' : 'pink'}`} key={editedTask.id} >
             <div className="tape-section"></div>
             <div className="checkedInput">
-                <img style={{ width: "35px", height: "35px" }} type="checkbox" onClick={() => handleToguel(editedTask.id)} checked={editedTask.checked} src={editedTask.checked ? logoChecked : logoUnchecked} alt='' />
+                <img style={{ width: "35px", height: "35px" }} type="checkbox" checked={task.checked} onClick={() => handleToguel(task.id)} src={task.checked ? logoChecked : logoUnchecked} alt='' />
             </div>
             <div className="outputTaskName">
                 <p>{editedTask.taskName}</p>

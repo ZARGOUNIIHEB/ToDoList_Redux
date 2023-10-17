@@ -31,6 +31,7 @@ const todoSlice = createSlice({
     reducers: {
 
         add: (state, action) => {
+
             const newTask = action.payload;
             state.push(newTask);
         },
@@ -40,6 +41,7 @@ const todoSlice = createSlice({
         togueltodo: (state, action) => {
             return state.map((e) => {
                 if (e.id === action.payload) {
+                    console.log(e.checked);
                     return { ...e, checked: !e.checked }
                 } else { return e }
             })
@@ -52,6 +54,7 @@ const todoSlice = createSlice({
         edittodo: (state, action) => {
             const editedTask = action.payload;
             console.log("From Todo :", editedTask);
+
             const index = state.findIndex((e) => e.id === editedTask.id);
             console.log("Index from Todo :", index);
             state.splice(index, editedTask);
@@ -59,7 +62,13 @@ const todoSlice = createSlice({
         },
         sorttodo: (state, action) => {
             state.sort((firstTask, secondTask) => secondTask.checked - firstTask.checked);
-        }
+        },
+        // sorttodoDone: (state, action) => {
+        //     return state.filter((e) => e.checked === true);
+        // },
+        // sorttodoNotDone: (state, action) => {
+        //     return state.filter((e) => e.checked === false);
+        // }
     }
 })
 export const { add, delet, togueltodo, togueltodo2, edittodo, sorttodo } = todoSlice.actions;
